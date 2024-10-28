@@ -1,0 +1,52 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+    background: whitesmoke;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  hr {
+    background: grey;
+  }
+  #container {
+    position: relative;
+    display: flex;
+  }
+  #profile {
+    flex: 15%;
+    margin: 5% 2% 0 10%;
+    width: 100%;
+  }
+  #info-cards {
+    flex: 55%;
+    margin-top: 5%;
+    margin-right: 10%;
+    width: 100%;
+  }
+  .input-text {
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .card {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 15px 30px 30px;
+    background-color: #fff;
+  }
+  .tags {
+    font-size: 17px;
+    font-weight: bold;
+  }
+  @media screen and (max-width: 850px) {
+    #container {
+      display: block;
+    }
+    .card {
+      margin: 5%;
+    }
+  }
+  
