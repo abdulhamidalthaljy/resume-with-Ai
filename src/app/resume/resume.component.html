@@ -4,7 +4,8 @@
       <div id="image">
         <img
           id="profile-photo"
-          src="http://mnnit.ac.in/ss/images/shashank.jpg"
+          *ngIf="selectedFile"
+          [src]="selectedFile ? createImageUrl(selectedFile) : 'http://mnnit.ac.in/ss/images/shashank.jpg'"
           alt="Profile-Image"
         />
       </div>
@@ -31,6 +32,9 @@
       </p>
       <p id="workshops">
         <input formControlName="workshops" placeholder="Workshops Attended" />
+      </p>
+      <p id="photo-upload">
+        <input type="file" (change)="onFileChange($event)" accept="image/*" />
       </p>
     </div>
     <button type="submit">Generate Resume</button>

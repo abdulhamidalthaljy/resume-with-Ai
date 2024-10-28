@@ -18,3 +18,19 @@ button {
 button:hover {
   background-color: #0a66c2;
 }
+#image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+#profile-photo {
+  width: 100px; /* Set a width for the profile photo */
+  height: 100px; /* Set a height for the profile photo */
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image covers the box */
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
