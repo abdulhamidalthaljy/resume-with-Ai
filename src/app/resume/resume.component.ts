@@ -1,29 +1,31 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-resume',
+  standalone: true,
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css'],
+  imports: [ReactiveFormsModule] // Import ReactiveFormsModule here
 })
 export class ResumeComponent {
-  resumeform: FormGroup;
+  resumeForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.resumeform = this.fb.group({
-      name: [''],
-      email: [''],
-      designation: [''],
-      college: [''],
-      about: [''],
-      education: [''],
-      workExperience: [''],
-      workshops: [''],
+  constructor() {
+    this.resumeForm = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl(''),
+      designation: new FormControl(''),
+      college: new FormControl(''),
+      about: new FormControl(''),
+      education: new FormControl(''),
+      workExperience: new FormControl(''),
+      workshops: new FormControl(''),
     });
   }
 
   onSubmit() {
-    console.log(this.resumeform.value);
-    // You can process the form data here
+    console.log(this.resumeForm.value);
+    // Here you can add logic to generate the resume or navigate to a new route
   }
 }
