@@ -9,15 +9,17 @@
       <p id="email">
         <input formControlName="email" placeholder="Your Email" />
       </p>
+      <p id="phone">
+        <input formControlName="phone" placeholder="Your phone" />
+      </p>
+      
       <p id="designation">
         <input formControlName="designation" placeholder="Your Designation" />
       </p>
       <p id="college">
         <input formControlName="college" placeholder="Your College" />
       </p>
-      <div id="about">
-        <input formControlName="about" placeholder="About Me" />
-      </div>
+     
       <p id="education">
         <input formControlName="education" placeholder="Your Education" />
       </p>
@@ -49,30 +51,24 @@
             alt="Profile-Image"
           />
         </div>
-        
+      
         <p id="name" >
-         <!-- create funktion to replace the paragraf content with the text  {{resumeForm.value.name}} -->
-         {{resumeForm.value.name}}
+         {{resumeForm.value.name || ' Name'}}
         
-         <br />
-          <span id="email" placeholder>{{resumeForm.value.email}}</span
-          >
+        
         </p>
+        <p id="email" ><fa-icon [icon]="faEnvelope"></fa-icon> <strong>{{ resumeForm.value.email || ' Email' }}</strong></p>
+        
+        
+        <p id="telephone" ><fa-icon [icon]="faTeletype"></fa-icon> phone<br /><strong>{{ resumeForm.value.phone || ' telephone' }}</strong></p>
+
         <p id="designation">
-          Assistant Professor<br /><span id="college"
-            >Motilal Nehru National Institute of Technology, Allahabad,
-            Prayagraj, India</span
+          {{resumeForm.value.designation || ' Designation'}}<br /><span id="college"
+            > {{resumeForm.value.college || ' college'}}</span
           >
         </p>
-        <div id="social-links">
-          <a href="#"><i class="fab fa-facebook-f stroke-transparent"></i></a
-          ><a><i class="fab fa-twitter stroke-transparent"></i></a
-          ><a><i class="fab fa-linkedin-in stroke-transparent"></i></a
-          ><a><i class="fab fa-github stroke-transparent"></i></a>
-        </div>
-        <a id="edit-intro" href="#"
-          ><i class="fas fa-pen-alt blue"></i>&nbsp;&nbsp;Edit Intro</a
-        >
+      
+       
         <hr width="100%" />
         <div id="about">
           <p style="display: inline">About</p>
@@ -83,8 +79,7 @@
         </p>
         <p id="education">
           Education<br /><strong
-            >Doctorate, Indian Institute of Information
-            Technology-Allahabad</strong
+            >{{resumeForm.value.education || ' Education'}}</strong
           >
         </p>
         <p id="more-about">
@@ -92,8 +87,6 @@
             >DUGC of Computer Science & Engineering Department</span
           >
         </p>
-        <p id="telephone">Telephone<br /><strong>0532-2271351</strong></p>
-        <p id="fax">Fax<br /><strong>+91-532-25453441</strong></p>
       </div>
       <div id="info-cards">
         <div class="card">
@@ -120,68 +113,8 @@
                 ><i class="fas fa-pen stroke-transparent-blue"></i
               ></a>
             </li>
-            <li>
-              <p class="tags">
-                Microsoft Theory Day<br /><span
-                  >IISc Bangalore | <span>2012</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                Microsoft Research India 2012 Summer School on Distributed
-                Algorithms, Systems and Programming<br /><span
-                  >IISc Bangalore | <span>2012</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                IEEE workshop on Cyber security<br /><span
-                  >DAIICT Gandhi Nagar | <span>Nov, 2013</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                Author workshop jointly organized by Central Library<br /><span
-                  >MNNIT Allahabad & Springer (India) Pvt. Ltd New Delhi |
-                  <span>29th October, 2015</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                Workshop for Computer Science Teachers<br /><span
-                  >IIT Kanpur | <span>July, 2014</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                15th International Conference on Cryptology INDOCRYPT<br /><span>
-                  | <span>2014</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
+         
+          
           </ul>
           <a href="#">+ Add workshops attended</a>
         </div>
@@ -202,28 +135,8 @@
                 ><i class="fas fa-pen stroke-transparent-blue"></i
               ></a>
             </li>
-            <li>
-              <p class="tags">
-                Indian Institute of Information Technology-Allahabad<br /><span
-                  >Information Security, MS | <span>1994-1996</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
-            <li>
-              <p class="tags">
-                Institute of Engineering and Rural Technology, U.P.T.U.
-                Allahabad<br /><span
-                  >Computer Science & Engineering, B.Tech |
-                  <span>1988-1992</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
+          
+         
           </ul>
           <a href="#">+ Add new</a>
         </div>
