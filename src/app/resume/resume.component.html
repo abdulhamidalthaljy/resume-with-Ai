@@ -2,15 +2,17 @@
 <div id="container">
   <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
     <div id="userinput">
-    
+      <p id="photo-upload">
+        <input type="file" (change)="onFileChange($event)" accept="image/*" />
+      </p>
       <p id="name">
-        <input formControlName="name" placeholder="Your Name" />
+        <input formControlName="name"  placeholder="Your Name" />
       </p>
       <p id="email">
         <input formControlName="email" placeholder="Your Email" />
       </p>
       <p id="phone">
-        <input formControlName="phone" placeholder="Your phone" />
+        <input formControlName="phone" type="number" placeholder="Your phone" />
       </p>
       
       <p id="designation">
@@ -29,9 +31,7 @@
       <p id="workshops">
         <input formControlName="workshops" placeholder="Workshops Attended" />
       </p>
-      <p id="photo-upload">
-        <input type="file" (change)="onFileChange($event)" accept="image/*" />
-      </p>
+     
       <button type="submit">Generate Resume</button>
       <button (click)="saveAsPDF()">Download PDF</button>
     </div>
@@ -47,7 +47,7 @@
           <img
             id="profile-photo"
             *ngIf="selectedFile"
-            [src]="selectedFile ? createImageUrl(selectedFile) : 'http://mnnit.ac.in/ss/images/shashank.jpg'"
+            [src]="selectedFile ? createImageUrl(selectedFile) : ''"
             alt="Profile-Image"
           />
         </div>
@@ -57,7 +57,7 @@
         
         
         </p>
-        <p id="email" ><fa-icon [icon]="faEnvelope"></fa-icon> <strong>{{ resumeForm.value.email || ' Email' }}</strong></p>
+        <p id="email" ><fa-icon [icon]="faEnvelope"></fa-icon> <strong> {{ resumeForm.value.email || ' Email' }}</strong></p>
         
         
         <p id="telephone" ><fa-icon [icon]="faTeletype"></fa-icon> phone<br /><strong>{{ resumeForm.value.phone || ' telephone' }}</strong></p>
