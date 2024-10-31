@@ -1,6 +1,20 @@
+@media print {
+	@page {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	body {
+		padding-top: 30px;
+		padding-bottom: 30px ;
+	}
+}
 
+.scrollable-div {
+  height: 100vh; 
+  overflow-y: scroll; 
+}
 input {
-  width: 100%;
+  width: 65%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -70,21 +84,15 @@ hr{
 }
 
 
-#name{
-  font-size: 23px !important;
-  line-height: 20px !important;
-}
-#about,.card > ul > li{
+
+.card > ul > li{
   padding: 0 0 0 15px;
   position: relative;
   display: inline-block;
   width: 100%;
 }
-#about{
-  font-size: 20px !important;
-  padding: 0 !important;
-}
-#name, #about > p{
+
+#name {
   font-weight: bolder;
   font-family: 'Open Sans', sans-serif;
 }
@@ -93,7 +101,7 @@ hr{
   font-weight: bold !important;
   font-family: 'Cutive Mono',monospace;
 }
-#college,#email,#year-graduation,#education,#more-about,#telephone,#fax{
+#email,#telephone{
   color: #555;
   font-size: 13.5px;
 }
@@ -101,38 +109,12 @@ strong,span{
   color: black;
   font-size: 16px;
 }
-#social-links,#about{
-  display: inline-block;
-}
-#social-links{
-  margin-bottom: 12px;
-}
-#social-links a{
-  margin: 0 10px;
-}
-#edit-intro{
-  display: block;
-  color:#097bbf;
-  font-family: 'Nunito', sans-serif;
-}
+
+
 .fab{
   font-size: 1.1em;
 }
-.fab,.fas{
-  color: whitesmoke;
-}
-#about > a{
-  top: 4px;
-  right: 8px;
-}
-.edit{
-  top: 19px;
-  right: 10px;
-}
-#about > a, .edit{
-  position: absolute;
-  font-size: 15px !important;
-}
+
 .stroke-transparent {
 -webkit-text-stroke: 1px #000;
 -webkit-text-fill-color: transparent;
@@ -146,6 +128,7 @@ strong,span{
 -webkit-text-fill-color: transparent;
 }
 .card{
+  width: 90%;
   box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
   overflow-x: hidden;
   margin-bottom: 30px;
@@ -158,32 +141,12 @@ strong,span{
   font-size: 18px;
   line-height: 2;
 }
-.card > p > i{
-  font-size: 18px;
-}
-.card > a{
-  font-weight: 400;
-  font-size: 15px;
-  margin: 0;
-  margin-left: 25px;
-  padding: 0;
-  border: 0;
-  height: auto;
-  background: transparent;
-  color: #097bbf;
-  outline: none;
-  cursor: pointer;
-}
-.card > ul{
-  list-style-type: none;
-}
+
 .tags{
   font-size: 17px;
   font-weight: bolder;
 }
-.tags ~ a{
-  display: none !important;
-}
+
 .tags span{
   font-size: 14px;
   font-weight: normal;
@@ -198,9 +161,7 @@ strong,span{
   }
 }
 @media screen and (max-width:850px){
-  #container{
-      display: block;
-  }
+ 
   #profile{
       width: 90%;
   }

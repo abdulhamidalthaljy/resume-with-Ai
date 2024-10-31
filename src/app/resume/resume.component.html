@@ -1,12 +1,23 @@
 
 <div id="container">
   <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-    <div id="userinput">
+    <div class="scrollable-div" id="userinput">
       <p id="photo-upload">
         <input type="file" (change)="onFileChange($event)" accept="image/*" />
       </p>
+      
       <p id="name">
         <input formControlName="name"  placeholder="Your Name" />
+      </p>
+      <p id="birthDate">
+        <input formControlName="birthDate"  placeholder="Your birthDate" />
+      </p>
+      <p id="Address">
+        <input formControlName="Address"  placeholder="Your Address" />
+      </p>
+      
+      <p id="familyStatus">
+        <input formControlName="familyStatus"  placeholder="Your familystatus" />
       </p>
       <p id="email">
         <input formControlName="email" placeholder="Your Email" />
@@ -14,33 +25,53 @@
       <p id="phone">
         <input formControlName="phone" type="number" placeholder="Your phone" />
       </p>
-      
-      <p id="designation">
-        <input formControlName="designation" placeholder="Your Designation" />
+      <p id="nationality">
+        <input formControlName="nationality" placeholder="Your nationality" />
       </p>
-      <p id="college">
-        <input formControlName="college" placeholder="Your College" />
+      
+
+    <p id="languages" >
+          <input formControlName="languages" placeholder="add a languages " />
+           <input formControlName="level" placeholder="language level" />
+          </p>
+          <!-- <button>add another language</button> -->
+          <p id="workExperience">
+            <input formControlName="workExperience" placeholder="Work Experience" />
+            <input formControlName="workPlace" placeholder="Work place" />
+            <input formControlName="workPlaceDate" placeholder="Work place Date" />
+          </p>
+          <p id="workshops">
+            <input formControlName="workshops" placeholder="Workshops Attended" />
+            <input formControlName="workshopsPlace" placeholder="Workshops Attended place" />
+            <input formControlName="workshopsPlaceDate" placeholder="Workshops Attended date" />
+
+          </p>
+          <p id="school">
+            <input formControlName="school" placeholder="school" />
+            <input formControlName="schoolPlace" placeholder="school Place" />
+            <input formControlName="schoolDate" placeholder="school Date" />
+
+          </p>
+     
+     
+      <p id="EDV">
+        <input formControlName="EDV" placeholder="EDV-Kenntnisse:" />
+      </p>
+      <p id="my_strong">
+        <input formControlName="my_strong" placeholder="Stärken" />
       </p>
      
-      <p id="education">
-        <input formControlName="education" placeholder="Your Education" />
-      </p>
-      <p id="work-experience">
-        <input formControlName="workExperience" placeholder="Work Experience" />
-      </p>
-      <p id="workshops">
-        <input formControlName="workshops" placeholder="Workshops Attended" />
-      </p>
+   
      
       <button type="submit">Generate Resume</button>
-      <button (click)="saveAsPDF()">Download PDF</button>
+      <button  [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>Download PDF</button>
     </div>
 
   </form>
   
 
-  <div id="contentToConvert">
-    <div id="inner-nav"></div>
+  <div id="contentToConvert" ngxPrint printSectionId="contentToConvert">
+   <div id="cv">
     <div id="container">
       <div id="profile">
         <div id="image">
@@ -51,96 +82,128 @@
             alt="Profile-Image"
           />
         </div>
-      
+      <h3>Persönliche Daten
+      </h3>
         <p id="name" >
          {{resumeForm.value.name || ' Name'}}
         
         
         </p>
+        <p id="birthDate" >
+          {{resumeForm.value.birthDate || ' birth Date'}}
+         
+         
+         </p>
+         <p id="Addresse" >
+          {{resumeForm.value.adresse || 'Address'}}
+         
+         
+         </p>
+         <p id="familyStatus" >
+          {{resumeForm.value.familyStatus || ' family Status '}}
+         
+         
+         </p>
         <p id="email" ><fa-icon [icon]="faEnvelope"></fa-icon> <strong> {{ resumeForm.value.email || ' Email' }}</strong></p>
         
         
-        <p id="telephone" ><fa-icon [icon]="faTeletype"></fa-icon> phone<br /><strong>{{ resumeForm.value.phone || ' telephone' }}</strong></p>
+        <p id="telephone" ><fa-icon [icon]="faTeletype"></fa-icon><strong> {{ resumeForm.value.phone || ' telephone' }}</strong></p>
 
-        <p id="designation">
-          {{resumeForm.value.designation || ' Designation'}}<br /><span id="college"
-            > {{resumeForm.value.college || ' college'}}</span
-          >
+        <p id="nationality">
+          {{resumeForm.value.nationality || ' Nationality'}}
         </p>
       
        
         <hr width="100%" />
-        <div id="about">
-          <p style="display: inline">About</p>
-          <a href="#"><i class="fas fa-pen stroke-transparent-blue"></i></a>
-        </div>
-        <p id="year-graduation">
-          Expected Year of Graduation<br /><strong>March, 2014</strong>
+        <h3>Besondere Kenntnisse
+        </h3>
+        <p id="Sprachen:">
+
+         Sprache:
         </p>
-        <p id="education">
-          Education<br /><strong
-            >{{resumeForm.value.education || ' Education'}}</strong
+<UL>
+  <LI> {{ resumeForm.value.languages || ' English'}}: {{ resumeForm.value.level || ' B2'}} </LI>
+  
+</UL>
+        <p id="EDV">
+          EDV:<br />
+            {{resumeForm.value.EDV || ' EDV KENTINISSE'}}
+        </p>
+        <p id="my_strong">
+          Stärken:<br /><span
+            > {{resumeForm.value.my_strong || '  kommunikativ, teamfähig, zuverlässig'}}</span
           >
         </p>
-        <p id="more-about">
-          More about me<br /><span
-            >DUGC of Computer Science & Engineering Department</span
-          >
-        </p>
+       
+       
+        <br>
+       <div id="date"><p id="date">{{ currentDate | date }}</p></div> 
       </div>
+      
+      
+
       <div id="info-cards">
         <div class="card">
           <p>
             <i class="fas fa-briefcase stroke-transparent"></i
-            >&nbsp;&nbsp;&nbsp;Work Experience
+            >&nbsp;&nbsp;&nbsp;Beruflicher Werdegang 
           </p>
-          <a href="#"
-            >+ Add work experience, including contracts and internships</a
-          >
+          <ul>
+            <li>
+              <p class="workExperience">
+             {{resumeForm.value.workExperience || '  Software Engineer'}}<br /><span> {{resumeForm.value.workPlace || ' FACEBOOK'}} | {{resumeForm.value.workPlaceDate || '2010'}}</span>
+              </p>
+             
+              
+            </li>
+         
+          
+          </ul>
+          
         </div>
+       
+              <div class="card">
+          <p>
+            <i class="fas fa-briefcase stroke-transparent"></i
+            >&nbsp;&nbsp;&nbsp;Weiterbildung
+          </p>
+          <ul>
+            <li>
+              <p class="workshops">
+                {{resumeForm.value.workshops || ' AWS Cloud Kurs'}}  <br /><span> {{resumeForm.value.workshopsPlace || ' AMAZON '}} | {{resumeForm.value.workshopsPlaceDate || ' 2010'}}</span>
+              </p>
+              
+              
+            </li>
+         
+          
+          </ul>
+          
+        </div>
+       
         <div class="card">
           <p>
             <i class="fas fa-briefcase stroke-transparent"></i
-            >&nbsp;&nbsp;&nbsp;Workshop
+            >&nbsp;&nbsp;&nbsp;Schul- und Ausbildung
           </p>
           <ul>
             <li>
-              <p class="tags">
-                5 th IEEE Conference on Wireless Communication and Sensor
-                Networks<br /><span>IIIT-Allahabad | <span>2010</span></span>
+              <p class="school">
+                {{resumeForm.value.school || '  Indian Institute of Information Technology-Allahabad Mobile Agent Based Communication for Real Time Applications, Doctorate '}}  <br /><span> {{resumeForm.value.schoolPlace || ' USA '}} | {{resumeForm.value.schoolDate || ' 2010'}}</span>
               </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
+              
+              
             </li>
          
           
           </ul>
-          <a href="#">+ Add workshops attended</a>
-        </div>
-        <div class="card">
-          <p>
-            <i class="fas fa-graduation-cap stroke-transparent"></i
-            >&nbsp;&nbsp;&nbsp;Education
-          </p>
-          <ul>
-            <li>
-              <p class="tags">
-                Indian Institute of Information Technology-Allahabad<br /><span
-                  >Secure Mobile Agent Based Communication for Real Time
-                  Applications, Doctorate | <span>March, 2014</span></span
-                >
-              </p>
-              <a class="edit" href="#"
-                ><i class="fas fa-pen stroke-transparent-blue"></i
-              ></a>
-            </li>
           
-         
-          </ul>
-          <a href="#">+ Add new</a>
         </div>
+        
       </div>
+    
+
     </div>
+  </div>
   </div>
 </div>

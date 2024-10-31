@@ -6,31 +6,47 @@ import html2canvas from 'html2canvas';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhoneAlt,faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import html2pdf from 'html2pdf.js';
+import { NgxPrintModule } from 'ngx-print';
 @Component({
   selector: 'app-resume',
   standalone: true,
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css'],
-  imports: [ReactiveFormsModule, CommonModule,FontAwesomeModule]
+  imports: [ReactiveFormsModule, CommonModule,FontAwesomeModule,NgxPrintModule]
 })
 export class ResumeComponent {
   faTeletype = faPhoneAlt;
   faEnvelope = faEnvelope;
   resumeForm: FormGroup;
+  currentDate: Date = new Date();
   selectedFile: File | null = null;
 
   constructor() {
     this.resumeForm = new FormGroup({
       name: new FormControl(''),
+      birthDate: new FormControl(''),
+      Address: new FormControl(''),
+      familyStatus: new FormControl(''),
       email: new FormControl(''),
       phone: new FormControl(''),
 
-      designation: new FormControl(''),
-      college: new FormControl(''),
-      about: new FormControl(''),
-      education: new FormControl(''),
+      nationality: new FormControl(''),
+      languages: new FormControl(''),
+      level: new FormControl(''),
+      EDV: new FormControl(''),
+      my_strong: new FormControl(''),
       workExperience: new FormControl(''),
+      workPlace: new FormControl(''),
+      workPlaceDate: new FormControl(''),
+
       workshops: new FormControl(''),
+      workshopsPlace: new FormControl(''),
+      workshopsPlaceDate: new FormControl(''),
+
+      school: new FormControl(''),
+      schoolPlace: new FormControl(''),
+      schoolDate: new FormControl(''),
+
       photo: new FormControl(''),
     });
     
