@@ -1,9 +1,8 @@
 
 <div id="container">
   <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-     <textarea placeholder="Enter YOUR INFORMATION TO FULL IT AUTOMATICLY WITH AI" id="text" name="text" #userInput rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>  
-		
-  <button (click)="processInput(userInput.value)">Process Information</button>
+ 
+    
     <div class="scrollable-div" id="userinput">
       <label for="file" class="custum-file-upload">
         <div class="icon">
@@ -12,10 +11,16 @@
         <div class="text">
            <span>Click to upload image</span>
            </div>
+  
         <input  id="file" type="file" (change)="onFileChange($event)" accept="image/*" />
         </label>
         
-
+        <DIV id="fillWithAi">
+<h4>ENTER YOUR INFORMATION HERE TO FILL IT automatically WITH AI:</h4>
+          <textarea placeholder="Write YOUR INFORMATION here  " id="text" name="text" #userInput rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>  
+        
+          <button (click)="processInput(userInput.value)">Process Information</button>
+        </DIV>
       
       <p id="name">
         <input formControlName="name"  placeholder="Your Name" />
