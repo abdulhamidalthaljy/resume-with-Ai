@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPhoneAlt,faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import html2pdf from 'html2pdf.js';
 import { NgxPrintModule } from 'ngx-print';
+import { GeminiService } from '../gemini.service';
 @Component({
   selector: 'app-resume',
   standalone: true,
@@ -21,36 +22,41 @@ export class ResumeComponent {
   currentDate: Date = new Date();
   selectedFile: File | null = null;
 
-  constructor() {
-    this.resumeForm = new FormGroup({
-      name: new FormControl(''),
-      birthDate: new FormControl(''),
-      Address: new FormControl(''),
-      familyStatus: new FormControl(''),
-      email: new FormControl(''),
-      phone: new FormControl(''),
-
-      nationality: new FormControl(''),
-      languages: new FormControl(''),
-      level: new FormControl(''),
-      EDV: new FormControl(''),
-      my_strong: new FormControl(''),
-      workExperience: new FormControl(''),
-      workPlace: new FormControl(''),
-      workPlaceDate: new FormControl(''),
-
-      workshops: new FormControl(''),
-      workshopsPlace: new FormControl(''),
-      workshopsPlaceDate: new FormControl(''),
-
-      school: new FormControl(''),
-      schoolPlace: new FormControl(''),
-      schoolDate: new FormControl(''),
-
-      photo: new FormControl(''),
+  constructor(private fb: FormBuilder, private geminiService: GeminiService) {
+    this.resumeForm = this.fb.group({
+      name: [''],
+      birthDate: [''],
+      Address: [''],
+      familyStatus: [''],
+      email: [''],
+      phone: [''],
+      nationality: [''],
+      languages: [''],
+      level: [''],
+      workExperience: [''],
+      workPlace: [''],
+      workPlaceDate: [''],
+      workshops: [''],
+      workshopsPlace: [''],
+      workshopsPlaceDate: [''],
+      school: [''],
+      schoolPlace: [''],
+      schoolDate: [''],
+      EDV: [''],
+      my_strong: [''],
     });
-    
   }
+
+  async processInput(userInput: string) {
+    const response = await this.geminiService.generateResponse(userInput);
+  
+    if (response) {
+      this.resumeForm.patchValue(response);
+    } else {
+      console.error("Failed to get a response from Gemini AI.");
+    }
+  }
+  
 
   saveAsPDF() {
     const element = document.getElementById('contentToConvert');
