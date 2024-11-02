@@ -9,12 +9,13 @@ import html2pdf from 'html2pdf.js';
 import { NgxPrintModule } from 'ngx-print';
 import { GeminiService } from '../gemini.service';
 import { ContentConverterComponent } from "../content-converter/content-converter.component";
+import { FooterComponent } from "../footer/footer.component";
 @Component({
   selector: 'app-resume',
   standalone: true,
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css'],
-  imports: [ReactiveFormsModule, CommonModule, FontAwesomeModule, NgxPrintModule, ContentConverterComponent]
+  imports: [ReactiveFormsModule, CommonModule, FontAwesomeModule, NgxPrintModule, ContentConverterComponent, FooterComponent]
 })
 export class ResumeComponent {
   faTeletype = faPhoneAlt;
