@@ -80,14 +80,8 @@
    
      
       <button type="submit">Generate Resume</button>
-<!-- Visible button for download PDF that triggers downloadPDF() -->
-<button (click)="downloadPDF()">Download PDF</button>
-
-<!-- Hidden ngx-print button specifically for desktop -->
-<button id="desktopPrintButton" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint style="display: none;">
-  Print
-</button>
-    </div>
+      <button *ngIf="!isMobile" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>Download PDF</button>
+      <button *ngIf="isMobile" (click)="saveAsPDF()">Download PDF</button>    </div>
 
   </form>
   

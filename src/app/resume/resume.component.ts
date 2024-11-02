@@ -56,33 +56,15 @@ export class ResumeComponent {
       console.error("Failed to get a response from Gemini AI.");
     }
   }
-  downloadPDF() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  
-    if (isMobile) {
-      // Isolate `contentToConvert` div for mobile
-      const contentToPrint = document.getElementById('contentToConvert');
-      const originalContent = document.body.innerHTML;
-  
-      if (contentToPrint) {
-        // Temporarily set the body to only include `contentToConvert`
-        document.body.innerHTML = contentToPrint.outerHTML;
-        window.print();
-        // Restore the original content after printing
-        document.body.innerHTML = originalContent;
-      } else {
-        console.error("Element 'contentToConvert' not found!");
-      }
-    } else {
-      // Trigger ngx-print for desktop
-      const printButton = document.getElementById('desktopPrintButton');
-      if (printButton) {
-        printButton.click();
-      }
-    }
+  isMobile: boolean = false;
+  ngOnInit() {
+    this.checkIfMobile(); // Check for mobile on initialization
   }
-  
 
+  checkIfMobile() {
+    const userAgent = navigator.userAgent || navigator.vendor ;
+    this.isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+  }
   saveAsPDF() {
     const element = document.getElementById('contentToConvert');
     
