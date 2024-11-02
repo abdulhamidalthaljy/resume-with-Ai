@@ -171,16 +171,13 @@ hr{
   }
 
   #resume-conta {
-    margin-left: 0;
-    margin-top: 20px; /* Add some space above preview on small screens */
+   margin: 20px; /* Add some space above preview on small screens */
   }
 
   /* Adjust the preview-box to fit smaller screens */
   .preview-box {
-    width: 100%; /* Make it full width */
     height: auto; /* Let it resize naturally */
-    transform: scale(0.8); /* Scale down slightly */
-    transform-origin: top center;
+    
     box-shadow: none; /* Optional: reduce shadow for smaller view */
     margin: 0 auto; /* Center-align preview box */
   }

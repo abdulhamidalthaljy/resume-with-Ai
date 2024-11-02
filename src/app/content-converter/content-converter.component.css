@@ -181,21 +181,6 @@ span {
 
 /* Media Queries for Responsiveness */
 
-@media (max-width: 1200px) {
-	#container {
-		flex-direction: column;
-	}
-
-	#profile {
-		margin: 2% auto;
-		width: 80%;
-	}
-
-	#info-cards {
-		width: 80%;
-		margin: 0 auto;
-	}
-}
 
 
 
