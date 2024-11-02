@@ -56,6 +56,20 @@ export class ResumeComponent {
       console.error("Failed to get a response from Gemini AI.");
     }
   }
+  downloadPDF() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  
+    if (isMobile) {
+      // Use window.print() as a fallback for mobile
+      window.print();
+    } else {
+      // Trigger ngx-print for desktop
+      const printButton = document.getElementById('desktopPrintButton');
+      if (printButton) {
+        printButton.click();
+      }
+    }
+  }
   
 
   saveAsPDF() {
