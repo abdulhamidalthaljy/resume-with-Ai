@@ -60,8 +60,19 @@ export class ResumeComponent {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   
     if (isMobile) {
-      // Use window.print() as a fallback for mobile
-      window.print();
+      // Isolate `contentToConvert` div for mobile
+      const contentToPrint = document.getElementById('contentToConvert');
+      const originalContent = document.body.innerHTML;
+  
+      if (contentToPrint) {
+        // Temporarily set the body to only include `contentToConvert`
+        document.body.innerHTML = contentToPrint.outerHTML;
+        window.print();
+        // Restore the original content after printing
+        document.body.innerHTML = originalContent;
+      } else {
+        console.error("Element 'contentToConvert' not found!");
+      }
     } else {
       // Trigger ngx-print for desktop
       const printButton = document.getElementById('desktopPrintButton');
