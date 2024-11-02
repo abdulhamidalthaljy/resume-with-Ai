@@ -5,9 +5,29 @@
 	}
 	body {
 		padding-top: 30px;
-		padding-bottom: 30px ;
+		padding-bottom: 30px;
 	}
 }
+
+
+.preview-box {
+  width: 600px;
+  height: 900px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(0.5);
+  transform-origin: top left;
+  margin: 20px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+#resume-conta {
+  margin-left: 20%;
+
+ }
 
 #text {
 	width:300px;
@@ -81,7 +101,7 @@
   
   width: 350px;
 
-  height: 100vh; 
+  height: 150vh; 
   overflow-y: scroll; 
 }
 input {
@@ -132,107 +152,41 @@ a{
 hr{
   background: grey;
 }
-#container{
-  margin: 10px;
-  position: relative;
+#container {
   display: flex;
-}
-#profile{
-  flex: 50%;
-  display: block;
-  position: relative;
-  margin: 5% 2% 0 10%;
-  width: 100%;
-  height: 100%;
-}
-#info-cards{
-  flex: 55%;
-  display: block;
-  margin-top: 5%;
-  margin-right: 10%;
-  width: 700px;
-  height: 100%;
+  gap: 20px; /* Add spacing between form and preview */
+  overflow: hidden;
 }
 
 
 
-.card > ul > li{
-  padding: 0 0 0 15px;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-#name {
-  font-weight: bolder;
-  font-family: 'Open Sans', sans-serif;
-}
-#email{
-  font-size: 15px !important;
-  font-weight: bold !important;
-  font-family: 'Cutive Mono',monospace;
-}
-#email,#telephone{
-  color: #555;
-  font-size: 13.5px;
-}
-strong,span{
-  color: black;
-  font-size: 16px;
-}
 
 
-.fab{
-  font-size: 1.1em;
-}
 
-.stroke-transparent {
--webkit-text-stroke: 1px #000;
--webkit-text-fill-color: transparent;
-}
-.blue{
-  color: #097bbf !important;
-  font-size: 13px;
-}
-.stroke-transparent-blue {
--webkit-text-stroke: 1px #097bbf;
--webkit-text-fill-color: transparent;
-}
-.card{
-  width: 90%;
-  box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
-  overflow-x: hidden;
-  margin-bottom: 30px;
-  padding: 15px 30px 30px 30px;
-  background-color: #fff;
-}
-.card > p{
-  color: #0e141e;
-  font-weight: bolder;
-  font-size: 18px;
-  line-height: 2;
-}
-
-.tags{
-  font-size: 17px;
-  font-weight: bolder;
-}
-
-.tags span{
-  font-size: 14px;
-  font-weight: normal;
-  color: #0e141e;
-}
-.tags span span{
-  color: #738f93;
-}
-
-
+/* Responsive layout for small screens */
 @media (max-width: 768px) {
+  #container {
+    display: block; /* Stack elements vertically */
+    gap: 0;
+  }
+
+  #resume-conta {
+    margin-left: 0;
+    margin-top: 20px; /* Add some space above preview on small screens */
+  }
+
+  /* Adjust the preview-box to fit smaller screens */
+  .preview-box {
+    width: 100%; /* Make it full width */
+    height: auto; /* Let it resize naturally */
+    transform: scale(0.8); /* Scale down slightly */
+    transform-origin: top center;
+    box-shadow: none; /* Optional: reduce shadow for smaller view */
+    margin: 0 auto; /* Center-align preview box */
+  }
+
+  /* Adjust #userinput for smaller screens */
   #userinput {
-  
-    width: 350px;
-  
-    overflow:visible;
+    width: 100%;
   }
 }

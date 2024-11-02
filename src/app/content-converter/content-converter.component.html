@@ -1,0 +1,94 @@
+<div id="contentToConvert" ngxPrint printSectionId="contentToConvert">
+    <div id="container">
+      <div id="profile">
+        <div id="image">
+          <img
+            id="profile-photo"
+            *ngIf="selectedFile"
+            [src]="createImageUrl(selectedFile)"
+            alt="Profile-Image"
+          />
+        </div>
+        <h3>Persönliche Daten</h3>
+        <p id="name">{{resumeForm.value.name || 'Name'}}</p>
+        <p id="birthDate">{{resumeForm.value.birthDate || 'birth Date'}}</p>
+        <p id="Address">{{resumeForm.value.Address || 'Address'}}</p>
+        <p id="familyStatus">{{resumeForm.value.familyStatus || 'family Status'}}</p>
+        <p id="email"><fa-icon [icon]="faEnvelope"></fa-icon><strong> {{ resumeForm.value.email || 'Email' }}</strong></p>
+        <p id="telephone"><fa-icon [icon]="faTeletype"></fa-icon><strong> {{ resumeForm.value.phone || 'telephone' }}</strong></p>
+        <p id="nationality">{{resumeForm.value.nationality || 'Nationality'}}</p>
+        <hr width="100%" />
+        <h3>Besondere Kenntnisse</h3>
+        <p id="Sprachen:">Sprache:</p>
+        <ul>
+          <li>{{ resumeForm.value.languages || 'English'}}: {{ resumeForm.value.level || 'B2'}} </li>
+        </ul>
+        <p id="EDV">EDV:<br />{{resumeForm.value.EDV || 'EDV KENTINISSE'}}</p>
+        <p id="my_strong">Stärken:<br /><span>{{resumeForm.value.my_strong || 'kommunikativ, teamfähig, zuverlässig'}}</span></p>
+        <br>
+        <div id="date"><p id="date">{{ currentDate | date }}</p></div> 
+      </div>
+
+      <div id="info-cards">
+        <div class="card">
+          <p>
+            <i class="fas fa-briefcase stroke-transparent"></i
+            >&nbsp;&nbsp;&nbsp;Beruflicher Werdegang 
+          </p>
+          <ul>
+            <li>
+              <p class="workExperience">
+             {{resumeForm.value.workExperience || '  Software Engineer'}}<br /><span> {{resumeForm.value.workPlace || ' FACEBOOK'}} | {{resumeForm.value.workPlaceDate || '2010'}}</span>
+              </p>
+             
+              
+            </li>
+         
+          
+          </ul>
+          
+        </div>
+       
+              <div class="card">
+          <p>
+            <i class="fas fa-briefcase stroke-transparent"></i
+            >&nbsp;&nbsp;&nbsp;Weiterbildung
+          </p>
+          <ul>
+            <li>
+              <p class="workshops">
+                {{resumeForm.value.workshops || ' AWS Cloud Kurs'}}  <br /><span> {{resumeForm.value.workshopsPlace || ' AMAZON '}} | {{resumeForm.value.workshopsPlaceDate || ' 2010'}}</span>
+              </p>
+              
+              
+            </li>
+         
+          
+          </ul>
+          
+        </div>
+       
+        <div class="card">
+          <p>
+            <i class="fas fa-briefcase stroke-transparent"></i
+            >&nbsp;&nbsp;&nbsp;Schul- und Ausbildung
+          </p>
+          <ul>
+            <li>
+              <p class="school">
+                {{resumeForm.value.school || '  Indian Institute of Information Technology-Allahabad Mobile Agent Based Communication for Real Time Applications, Doctorate '}}  <br /><span> {{resumeForm.value.schoolPlace || ' USA '}} | {{resumeForm.value.schoolDate || ' 2010'}}</span>
+              </p>
+              
+              
+            </li>
+         
+          
+          </ul>
+          
+        </div>
+        
+      </div>
+    
+
+    </div>
+  </div>

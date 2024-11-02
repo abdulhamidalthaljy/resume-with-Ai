@@ -8,12 +8,13 @@ import { faPhoneAlt,faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import html2pdf from 'html2pdf.js';
 import { NgxPrintModule } from 'ngx-print';
 import { GeminiService } from '../gemini.service';
+import { ContentConverterComponent } from "../content-converter/content-converter.component";
 @Component({
   selector: 'app-resume',
   standalone: true,
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css'],
-  imports: [ReactiveFormsModule, CommonModule,FontAwesomeModule,NgxPrintModule]
+  imports: [ReactiveFormsModule, CommonModule, FontAwesomeModule, NgxPrintModule, ContentConverterComponent]
 })
 export class ResumeComponent {
   faTeletype = faPhoneAlt;
