@@ -218,7 +218,11 @@ export class ResumeComponent {
   createImageUrl(file: File): string {
     return URL.createObjectURL(file);
   }
-
+  resetForm() {
+    this.resumeForm.reset(); // Resets the form to its initial state
+    this.selectedFile = null; // Clear the selected file
+  }
+  
   onSubmit() {
     console.log(this.resumeForm.value);
   }

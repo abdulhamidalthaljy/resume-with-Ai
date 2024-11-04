@@ -28,6 +28,7 @@
             ></textarea>
             <div>
               <button (click)="processInput(userInput.value)" [disabled]="isLoading">Fill automatically with AI</button>
+              <button (click)="resetForm()">Reset All Inputs</button>
               <div *ngIf="isLoading" class="loading-indicator">
                 <div class="loader"></div>
               </div>
