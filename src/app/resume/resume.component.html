@@ -58,7 +58,12 @@
         <p id="nationality">
           <input formControlName="nationality" placeholder="Your Nationality" />
         </p>
-
+        <p id="EDV">
+          <input formControlName="EDV" placeholder="EDV-Kenntnisse:" />
+        </p>
+        <p id="my_strong">
+          <input formControlName="my_strong" placeholder="Strengths" />
+        </p>
         <!-- Dynamic FormArray Section: Languages -->
         <div formArrayName="languages" id="languages">
           <h5>Languages</h5>
@@ -109,12 +114,7 @@
 <button type="button" (click)="addSchool({name: '', place: '', date: ''})">Add School</button>
         </div>
 
-        <p id="EDV">
-          <input formControlName="EDV" placeholder="EDV-Kenntnisse:" />
-        </p>
-        <p id="my_strong">
-          <input formControlName="my_strong" placeholder="Strengths" />
-        </p>
+       
       </div>
     </form>
   </div>
