@@ -116,12 +116,13 @@ export class ResumeComponent {
   
   // Process input and populate form dynamically
   async processInput(userInput: string) {
+    this.isLoading = true; // Start loading
     const data = await this.geminiService.generateResponse(userInput);
 
     if (data) {
       // Set simple form controls
    
-      this.isLoading = true; // Start loading
+     
       const response = await this.geminiService.generateResponse(userInput);
       
       if (response) {
