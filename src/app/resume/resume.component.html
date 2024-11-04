@@ -1,104 +1,137 @@
-
 <div id="container">
-  <div><form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
- 
+  <div>
+    <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
+      <div class="scrollable-div" id="userinput">
+        <label for="file" class="custum-file-upload">
+          <div class="icon">
+          <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> </g></svg>
+          </div>
+          <div class="text">
+             <span>Click to upload image</span>
+             </div>
     
-    <div class="scrollable-div" id="userinput">
-      <label for="file" class="custum-file-upload">
-        <div class="icon">
-        <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" fill=""></path> </g></svg>
+          <input  id="file" type="file" (change)="onFileChange($event)" accept="image/*" />
+          </label>
+
+          <div *ngIf="isLoading" class="loading-indicator">
+            <!-- You can customize this content -->
+            <span>Loading...</span>
+            <!-- Optionally, add a spinner graphic here -->
+          </div>
+          
+          <!-- Existing code for the input form -->
+          <div id="fillWithAi">
+            <h4>ENTER YOUR INFORMATION HERE TO FILL IT automatically WITH AI:</h4>
+            <textarea
+              placeholder="Write YOUR INFORMATION here"
+              id="text"
+              name="text"
+              #userInput
+              rows="4"
+              style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px;"
+            ></textarea>
+            <button (click)="processInput(userInput.value)" [disabled]="isLoading">Process Information</button>
+          </div>
+          
+
+        <p id="name">
+          <input formControlName="name" placeholder="Your Name" required />
+        </p>
+        <p id="birthDate">
+          <input formControlName="birthDate" placeholder="Your Birth Date" required />
+        </p>
+        <p id="Address">
+          <input formControlName="Address" placeholder="Your Address" required />
+        </p>
+        <p id="familyStatus">
+          <input formControlName="familyStatus" placeholder="Your Family Status" />
+        </p>
+        <p id="email">
+          <input formControlName="email" placeholder="Your Email" required type="email" />
+        </p>
+        <p id="phone">
+          <input formControlName="phone" placeholder="Your Phone" required type="tel" />
+        </p>
+        <p id="nationality">
+          <input formControlName="nationality" placeholder="Your Nationality" />
+        </p>
+
+        <!-- Dynamic FormArray Section: Languages -->
+        <div formArrayName="languages" id="languages">
+          <h5>Languages</h5>
+          <div *ngFor="let language of languages.controls; let i = index" [formGroupName]="i">
+            <input formControlName="language" placeholder="Language" required />
+            <input formControlName="level" placeholder="Language Level" required />
+            <button type="button" (click)="removeLanguage(i)">Remove Language</button>
+          </div>
+<!-- Add Language Button -->
+<button type="button" (click)="addLanguage({ language: '', level: '' })">Add Language</button>
         </div>
-        <div class="text">
-           <span>Click to upload image</span>
-           </div>
-  
-        <input  id="file" type="file" (change)="onFileChange($event)" accept="image/*" />
-        </label>
-        
-        <DIV id="fillWithAi">
-<h4>ENTER YOUR INFORMATION HERE TO FILL IT automatically WITH AI:</h4>
-          <textarea placeholder="Write YOUR INFORMATION here  " id="text" name="text" #userInput rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>  
-        
-          <button (click)="processInput(userInput.value)">Process Information</button>
-        </DIV>
-      
-      <p id="name">
-        <input formControlName="name"  placeholder="Your Name" />
-      </p>
-      <p id="birthDate">
-        <input formControlName="birthDate"  placeholder="Your birthDate" />
-      </p>
-      <p id="Address">
-        <input formControlName="Address"  placeholder="Your Address" />
-      </p>
-      
-      <p id="familyStatus">
-        <input formControlName="familyStatus"  placeholder="Your familystatus" />
-      </p>
-      <p id="email">
-        <input formControlName="email" placeholder="Your Email" />
-      </p>
-      <p id="phone">
-        <input formControlName="phone"  placeholder="Your phone" />
-      </p>
-      <p id="nationality">
-        <input formControlName="nationality" placeholder="Your nationality" />
-      </p>
-      
 
-    <p id="languages" >
-          <input formControlName="languages" placeholder="add a languages " />
-           <input formControlName="level" placeholder="language level" />
-          </p>
-          <!-- <button>add another language</button> -->
-          <p id="workExperience">
-            <input formControlName="workExperience" placeholder="Work Experience" />
-            <input formControlName="workPlace" placeholder="Work place" />
-            <input formControlName="workPlaceDate" placeholder="Work place Date" />
-          </p>
-          <p id="workshops">
-            <input formControlName="workshops" placeholder="Workshops Attended" />
-            <input formControlName="workshopsPlace" placeholder="Workshops Attended place" />
-            <input formControlName="workshopsPlaceDate" placeholder="Workshops Attended date" />
+        <!-- Dynamic FormArray Section: Work Experience -->
+        <div formArrayName="workExperience" id="workExperience">
+          <h5>Work Experience</h5>
+          <div *ngFor="let work of workExperience.controls; let i = index" [formGroupName]="i">
+            <input formControlName="workCompany" placeholder="Work Company" required />
+            <input formControlName="workPlace" placeholder="Work Place" required />
+            <input formControlName="workPlaceDate" placeholder="Work Date" required />
+            <button type="button" (click)="removeWorkExperience(i)">Remove Work Experience</button>
+          </div>
+          <button type="button" (click)="addWorkExperience({ workCompany: '', workPlace: '', workPlaceDate: '' })">Add Work Experience</button>
+        </div>
 
-          </p>
-          <p id="school">
-            <input formControlName="school" placeholder="school" />
-            <input formControlName="schoolPlace" placeholder="school Place" />
-            <input formControlName="schoolDate" placeholder="school Date" />
+        <!-- Dynamic FormArray Section: Workshops -->
+        <div formArrayName="workshops" id="workshops">
+          <h5>Workshops</h5>
+          <div *ngFor="let workshop of workshops.controls; let i = index" [formGroupName]="i">
+            <input formControlName="workshop" placeholder="Workshop" required />
+            <input formControlName="workshopPlace" placeholder="Workshop Place" required />
+            <input formControlName="workshopDate" placeholder="Workshop Date" required />
+            <button type="button" (click)="removeWorkshop(i)">Remove Workshop</button>
+          </div>
+<!-- Add Workshop Button -->
+<button type="button" (click)="addWorkshop({ workshop: '', workshopPlace: '', workshopDate: '' })">Add Workshop</button>
+        </div>
 
-          </p>
-     
-     
-      <p id="EDV">
-        <input formControlName="EDV" placeholder="EDV-Kenntnisse:" />
-      </p>
-      <p id="my_strong">
-        <input formControlName="my_strong" placeholder="Stärken" />
-      </p>
-     
-   
-     
-      <button type="submit">Generate Resume</button>
-      <button *ngIf="!isMobile" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>Download PDF</button>
-      <button *ngIf="isMobile" (click)="saveAsPDF()">Download PDF</button>    </div>
+        <!-- Dynamic FormArray Section: School -->
+        <div formArrayName="school" id="school">
+          <h5>Education</h5>
+          <div *ngFor="let school of school.controls; let i = index" [formGroupName]="i">
+            <input formControlName="schoolName" placeholder="School" required />
+            <input formControlName="schoolPlace" placeholder="School Place" required />
+            <input formControlName="schoolDate" placeholder="School Date" required />
+            <button type="button" (click)="removeSchool(i)">Remove School</button>
+          </div>
+<!-- Dynamic FormArray Section: School -->
+<button type="button" (click)="addSchool({name: '', place: '', date: ''})">Add School</button>
+        </div>
 
-  </form></div>
-  
+        <p id="EDV">
+          <input formControlName="EDV" placeholder="EDV-Kenntnisse:" />
+        </p>
+        <p id="my_strong">
+          <input formControlName="my_strong" placeholder="Strengths" />
+        </p>
+      </div>
+    </form>
+  </div>
+
   <div id="resume-conta">
     <div class="preview-box">
-      <app-content-converter 
-        [resumeForm]="resumeForm" 
-        [selectedFile]="selectedFile">
-      </app-content-converter>
+      <app-content-converter [resumeForm]="resumeForm" [selectedFile]="selectedFile"></app-content-converter>
+     
     </div>
+    <div id="button">
+      <button type="submit" (click)="onSubmit()">Generate Resume</button>
+      <button *ngIf="!isMobile" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>
+        Download PDF
+      </button>
+      <button *ngIf="isMobile" (click)="saveAsPDF()">Download PDF</button>
+    </div>
+    
   </div>
+</div>
 
- 
-
-
-  </div>
- 
-  <div  id="footer" >
-    <app-footer></app-footer>
-  </div>
+<div id="footer">
+  <app-footer></app-footer>
+</div>

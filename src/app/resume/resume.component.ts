@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPhoneAlt,faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import html2pdf from 'html2pdf.js';
 import { NgxPrintModule } from 'ngx-print';
 import { GeminiService } from '../gemini.service';
 import { ContentConverterComponent } from "../content-converter/content-converter.component";
 import { FooterComponent } from "../footer/footer.component";
+
 @Component({
   selector: 'app-resume',
   standalone: true,
@@ -23,6 +24,8 @@ export class ResumeComponent {
   resumeForm: FormGroup;
   currentDate: Date = new Date();
   selectedFile: File | null = null;
+  isLoading: boolean = false; 
+
 
   constructor(private fb: FormBuilder, private geminiService: GeminiService) {
     this.resumeForm = this.fb.group({
@@ -33,65 +36,154 @@ export class ResumeComponent {
       email: [''],
       phone: [''],
       nationality: [''],
-      languages: [''],
-      level: [''],
-      workExperience: [''],
-      workPlace: [''],
-      workPlaceDate: [''],
-      workshops: [''],
-      workshopsPlace: [''],
-      workshopsPlaceDate: [''],
-      school: [''],
-      schoolPlace: [''],
-      schoolDate: [''],
       EDV: [''],
       my_strong: [''],
+  
+      // Dynamic fields as FormArrays
+      languages: this.fb.array([]),
+      workExperience: this.fb.array([]),
+      workshops: this.fb.array([]),
+      school: this.fb.array([]),
     });
   }
 
-  async processInput(userInput: string) {
-    const response = await this.geminiService.generateResponse(userInput);
+  // Getter functions for easier access to the FormArrays
+  get languages(): FormArray {
+    return this.resumeForm.get('languages') as FormArray;
+  }
+
+  get workExperience(): FormArray {
+    return this.resumeForm.get('workExperience') as FormArray;
+  }
+
+  get workshops(): FormArray {
+    return this.resumeForm.get('workshops') as FormArray;
+  }
+
+  get school(): FormArray {
+    return this.resumeForm.get('school') as FormArray;
+  }
+
+  addSchool(schoolData: { name: string; place: string; date: string }): void {
+    this.school.push(this.fb.group({
+      schoolName: [schoolData.name],
+      schoolPlace: [schoolData.place],
+      schoolDate: [schoolData.date]
+    }));
+  }
+  addLanguage(languageData: { language: string; level: string }): void {
+    this.languages.push(this.fb.group({
+      language: [languageData.language],
+      level: [languageData.level]
+    }));
+  }
   
-    if (response) {
-      this.resumeForm.patchValue(response);
+  addWorkExperience(workData: { workCompany: string; workPlace: string; workPlaceDate: string }): void {
+    this.workExperience.push(this.fb.group({
+      workCompany: [workData.workCompany],
+      workPlace: [workData.workPlace],
+      workPlaceDate: [workData.workPlaceDate]
+    }));
+  }
+  
+  addWorkshop(workshopData: { workshop: string; workshopPlace: string; workshopDate: string }): void {
+    this.workshops.push(this.fb.group({
+      workshop: [workshopData.workshop],
+      workshopPlace: [workshopData.workshopPlace],
+      workshopDate: [workshopData.workshopDate]
+    }));
+  }
+  
+
+  // Methods to remove entries if needed
+  removeLanguage(index: number) {
+    this.languages.removeAt(index);
+  }
+
+  removeWorkExperience(index: number) {
+    this.workExperience.removeAt(index);
+  }
+
+  removeWorkshop(index: number) {
+    this.workshops.removeAt(index);
+  }
+
+  removeSchool(index: number) {
+    this.school.removeAt(index);
+  }
+  
+  // Process input and populate form dynamically
+  async processInput(userInput: string) {
+    const data = await this.geminiService.generateResponse(userInput);
+
+    if (data) {
+      // Set simple form controls
+      this.resumeForm.patchValue({
+        name: data.name,
+        birthDate: data.birthDate,
+        Address: data.Address,
+        familyStatus: data.familyStatus,
+        email: data.email,
+        phone: data.phone,
+        nationality: data.nationality,
+        EDV: data.EDV,
+        my_strong: data.my_strong,
+      });
+      this.isLoading = true; // Start loading
+      const response = await this.geminiService.generateResponse(userInput);
+      
+      if (response) {
+        this.resumeForm.patchValue(response);
+      } else {
+        console.error("Failed to get a response from Gemini AI.");
+      }
+    
+      this.isLoading = false; 
+      // Populate dynamic array data
+      data.languages?.forEach((lang: any) => this.languages.push(this.fb.group(lang)));
+      data.workExperience?.forEach((experience: any) => this.addWorkExperience(experience));
+      data.school?.forEach((school: any) => this.addSchool(school));
+      data.workshops?.forEach((workshop: any) => this.addWorkshop(workshop));
+      
+      console.log('Resume form after processing:', this.resumeForm.value);
     } else {
       console.error("Failed to get a response from Gemini AI.");
     }
   }
+
+  // Mobile check
   isMobile: boolean = false;
   ngOnInit() {
     this.checkIfMobile(); // Check for mobile on initialization
   }
 
   checkIfMobile() {
-    const userAgent = navigator.userAgent || navigator.vendor ;
+    const userAgent = navigator.userAgent || navigator.vendor;
     this.isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
   }
+
+  // Save as PDF functionality
   saveAsPDF() {
     const element = document.getElementById('contentToConvert');
     
     if (element) {
       const options = {
-        
         filename: 'resume.pdf',
         image: { type: 'jpeg', quality: 1.0 },
         html2canvas: {
           scale: 2,
-          background: '#ffffff', // Set a white background
+          background: '#ffffff',
         },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
   
-      // Use html2pdf to create the PDF
       html2pdf().from(element).set(options).save();
     } else {
       console.error("Element not found!");
     }
   }
-  
 
-  
-      
+  // File handling for photo uploads
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {

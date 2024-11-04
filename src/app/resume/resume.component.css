@@ -29,6 +29,11 @@
 
  }
 
+ #button{
+  position: relative;
+  top: -467px;
+  left: 46px;
+ }
 #text {
 	width:300px;
 	background-color:#FFF;
@@ -182,6 +187,11 @@ hr{
     margin: 0 auto; /* Center-align preview box */
   }
 
+  #button{
+    position: relative;
+    top: -300px;
+    left: 46px;
+   }
   /* Adjust #userinput for smaller screens */
   #userinput {
     width: 100%;
