@@ -10,7 +10,7 @@ import { NgxPrintModule } from 'ngx-print';
 import { GeminiService } from '../gemini.service';
 import { ContentConverterComponent } from "../content-converter/content-converter.component";
 import { FooterComponent } from "../footer/footer.component";
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-resume',
   standalone: true,
@@ -27,7 +27,7 @@ export class ResumeComponent {
   isLoading: boolean = false; 
 
 
-  constructor(private fb: FormBuilder, private geminiService: GeminiService) {
+  constructor(private fb: FormBuilder, private geminiService: GeminiService,private router: Router) {
     this.resumeForm = this.fb.group({
       name: [''],
       birthDate: [''],
@@ -154,11 +154,28 @@ export class ResumeComponent {
       console.error("Failed to get a response from Gemini AI.");
     }
   }
+  
+  redirectToPreview() {
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        sessionStorage.setItem('selectedFile', reader.result as string);
+        window.open('/preview', '_blank');
+      };
+      reader.readAsDataURL(this.selectedFile);
+    } else {
+      window.open('/preview', '_blank');
+    }
+  }
+  
 
   // Mobile check
   isMobile: boolean = false;
   ngOnInit() {
     this.checkIfMobile(); // Check for mobile on initialization
+    this.resumeForm.valueChanges.subscribe((data) => {
+      localStorage.setItem('resumeFormData', JSON.stringify(data));
+    });
   }
 
   checkIfMobile() {
@@ -205,4 +222,5 @@ export class ResumeComponent {
   onSubmit() {
     console.log(this.resumeForm.value);
   }
+
 }

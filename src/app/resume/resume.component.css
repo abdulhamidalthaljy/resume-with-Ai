@@ -43,10 +43,6 @@
   background-color: #fff;
 }
 
-#resume-conta {
-  margin-left: 20%;
-
- }
 
  #button{
   position: relative;
@@ -123,9 +119,8 @@
 
 #userinput {
   
-  width: 350px;
-
-  height: 150vh; 
+  width: 613px;
+  height: 100vh;
   overflow-y: scroll; 
 }
 input {

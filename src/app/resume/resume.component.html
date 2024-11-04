@@ -26,10 +26,13 @@
               rows="4"
               style=" word-wrap: break-word; resize: none; height: 160px;"
             ></textarea>
-            <button (click)="processInput(userInput.value)" [disabled]="isLoading">Fill automatically with AI</button>
-            <div *ngIf="isLoading" class="loading-indicator">
-              <div class="loader"></div>
+            <div>
+              <button (click)="processInput(userInput.value)" [disabled]="isLoading">Fill automatically with AI</button>
+              <div *ngIf="isLoading" class="loading-indicator">
+                <div class="loader"></div>
+              </div>
             </div>
+           
           </div>
           
 
@@ -122,6 +125,8 @@
     </div>
     <div id="button">
       <!-- <button type="submit" (click)="onSubmit()">Generate Resume</button> -->
+      <button (click)="redirectToPreview()">preview</button>
+
       <button *ngIf="!isMobile" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>
         Download PDF
       </button>
