@@ -13,11 +13,7 @@
           <input  id="file" type="file" (change)="onFileChange($event)" accept="image/*" />
           </label>
 
-          <div *ngIf="isLoading" class="loading-indicator">
-            <!-- You can customize this content -->
-            <span>Loading...</span>
-            <!-- Optionally, add a spinner graphic here -->
-          </div>
+          
           
           <!-- Existing code for the input form -->
           <div id="fillWithAi">
@@ -30,7 +26,12 @@
               rows="4"
               style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px;"
             ></textarea>
-            <button (click)="processInput(userInput.value)" [disabled]="isLoading">Process Information</button>
+            <button (click)="processInput(userInput.value)" [disabled]="isLoading">Fill automatically with AI</button>
+            <div *ngIf="isLoading" class="loading-indicator">
+              <!-- You can customize this content -->
+              <div class="loader"></div>
+              <!-- Optionally, add a spinner graphic here -->
+            </div>
           </div>
           
 
@@ -72,25 +73,25 @@
         <div formArrayName="workExperience" id="workExperience">
           <h5>Work Experience</h5>
           <div *ngFor="let work of workExperience.controls; let i = index" [formGroupName]="i">
-            <input formControlName="workCompany" placeholder="Work Company" required />
-            <input formControlName="workPlace" placeholder="Work Place" required />
-            <input formControlName="workPlaceDate" placeholder="Work Date" required />
+            <input formControlName="company" placeholder="Work Company" required />
+            <input formControlName="position" placeholder="Work position" required />
+            <input formControlName="date" placeholder="Work Date" required />
             <button type="button" (click)="removeWorkExperience(i)">Remove Work Experience</button>
           </div>
-          <button type="button" (click)="addWorkExperience({ workCompany: '', workPlace: '', workPlaceDate: '' })">Add Work Experience</button>
+          <button type="button" (click)="addWorkExperience({ company: '', date: '', position: '' })">Add Work Experience</button>
         </div>
 
         <!-- Dynamic FormArray Section: Workshops -->
         <div formArrayName="workshops" id="workshops">
           <h5>Workshops</h5>
           <div *ngFor="let workshop of workshops.controls; let i = index" [formGroupName]="i">
-            <input formControlName="workshop" placeholder="Workshop" required />
-            <input formControlName="workshopPlace" placeholder="Workshop Place" required />
-            <input formControlName="workshopDate" placeholder="Workshop Date" required />
+            <input formControlName="name" placeholder="Workshop" required />
+            <input formControlName="place" placeholder="Workshop Place" required />
+            <input formControlName="date" placeholder="Workshop Date" required />
             <button type="button" (click)="removeWorkshop(i)">Remove Workshop</button>
           </div>
 <!-- Add Workshop Button -->
-<button type="button" (click)="addWorkshop({ workshop: '', workshopPlace: '', workshopDate: '' })">Add Workshop</button>
+<button type="button" (click)="addWorkshop({ date: '', name: '', place: '' })">Add Workshop</button>
         </div>
 
         <!-- Dynamic FormArray Section: School -->
@@ -122,7 +123,7 @@
      
     </div>
     <div id="button">
-      <button type="submit" (click)="onSubmit()">Generate Resume</button>
+      <!-- <button type="submit" (click)="onSubmit()">Generate Resume</button> -->
       <button *ngIf="!isMobile" [useExistingCss]="true" printSectionId="contentToConvert" ngxPrint>
         Download PDF
       </button>

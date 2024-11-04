@@ -39,9 +39,9 @@
         <ul>
           <li *ngFor="let work of resumeForm.value.workExperience">
             <p class="workExperience">
-              {{ work.workCompany || 'Company' }}   {{ work.workPlace || 'Work Place' }} 
+              {{ work.company || 'Company' }}   {{ work.position || 'Work Position' }} 
                <br />
-              <span>{{ work.workPlaceDate || 'Date' }}</span>
+              <span>{{ work.date || 'Date' }}</span>
             </p>
           </li>
         </ul>
@@ -53,8 +53,8 @@
         <ul>
           <li *ngFor="let workshop of resumeForm.value.workshops">
             <p class="workshops">
-              {{ workshop.workshop || 'Workshop' }} <br />
-              <span>{{ workshop.workshopPlace || 'Place' }} | {{ workshop.workshopDate || 'Date' }}</span>
+              {{ workshop.name || 'Workshop' }} <br />
+              <span>{{ workshop.place || 'Place' }} | {{ workshop.date || 'Date' }}</span>
             </p>
           </li>
         </ul>

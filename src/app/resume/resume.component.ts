@@ -78,19 +78,21 @@ export class ResumeComponent {
     }));
   }
   
-  addWorkExperience(workData: { workCompany: string; workPlace: string; workPlaceDate: string }): void {
+  addWorkExperience(workData: { position: string; company: string; date: string }): void {
     this.workExperience.push(this.fb.group({
-      workCompany: [workData.workCompany],
-      workPlace: [workData.workPlace],
-      workPlaceDate: [workData.workPlaceDate]
+      company: [workData.company],
+   
+     
+      date: [workData.date],
+      position: [workData.position]
     }));
   }
   
-  addWorkshop(workshopData: { workshop: string; workshopPlace: string; workshopDate: string }): void {
+  addWorkshop(workshopData: { date: string; name: string; place: string }): void {
     this.workshops.push(this.fb.group({
-      workshop: [workshopData.workshop],
-      workshopPlace: [workshopData.workshopPlace],
-      workshopDate: [workshopData.workshopDate]
+      date: [workshopData.date],
+      name: [workshopData.name],
+      place: [workshopData.place]
     }));
   }
   
@@ -118,17 +120,7 @@ export class ResumeComponent {
 
     if (data) {
       // Set simple form controls
-      this.resumeForm.patchValue({
-        name: data.name,
-        birthDate: data.birthDate,
-        Address: data.Address,
-        familyStatus: data.familyStatus,
-        email: data.email,
-        phone: data.phone,
-        nationality: data.nationality,
-        EDV: data.EDV,
-        my_strong: data.my_strong,
-      });
+   
       this.isLoading = true; // Start loading
       const response = await this.geminiService.generateResponse(userInput);
       
@@ -140,6 +132,17 @@ export class ResumeComponent {
     
       this.isLoading = false; 
       // Populate dynamic array data
+      this.resumeForm.patchValue({
+        name: data.name,
+        birthDate: data.birthDate,
+        Address: data.Address,
+        familyStatus: data.familyStatus,
+        email: data.email,
+        phone: data.phone,
+        nationality: data.nationality,
+        EDV: data.EDV,
+        my_strong: data.my_strong,
+      });
       data.languages?.forEach((lang: any) => this.languages.push(this.fb.group(lang)));
       data.workExperience?.forEach((experience: any) => this.addWorkExperience(experience));
       data.school?.forEach((school: any) => this.addSchool(school));
