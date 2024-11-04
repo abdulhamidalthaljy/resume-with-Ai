@@ -128,9 +128,13 @@ hr {
 	width: 700px;
 	height: 100%;
 }
+.card > ul {
+	padding-inline-start: 20px;
 
+}
 .card > ul > li {
-	padding: 0 0 0 15px;
+	
+	padding: 0 0 0 10px;
 	width: 100%;
 	display: inline-block;
 }
@@ -157,8 +161,8 @@ span {
 .card {
 	width: 90%;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
-	padding: 15px 30px;
+	margin-bottom: 15px;
+	padding: 10px 15px;
 	background-color: #fff;
 }
 

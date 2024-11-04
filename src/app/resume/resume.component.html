@@ -24,13 +24,11 @@
               name="text"
               #userInput
               rows="4"
-              style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px;"
+              style=" word-wrap: break-word; resize: none; height: 160px;"
             ></textarea>
             <button (click)="processInput(userInput.value)" [disabled]="isLoading">Fill automatically with AI</button>
             <div *ngIf="isLoading" class="loading-indicator">
-              <!-- You can customize this content -->
               <div class="loader"></div>
-              <!-- Optionally, add a spinner graphic here -->
             </div>
           </div>
           
