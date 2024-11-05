@@ -108,9 +108,9 @@ span {
 }
 
 .card {
-	width: 90%;
+	width: 100%;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	padding: 10px 15px;
 	background-color: #fff;
 }
