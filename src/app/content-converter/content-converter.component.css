@@ -35,10 +35,10 @@
 
 
 #profile-photo {
-	width: 150px;
-	height: 150px;
-	border-radius: 20%;
-	object-fit: cover;
+    width: 127px;
+    height: 169px;
+    border-radius: 21%;
+    object-fit: cover;
 }
 
 input[type="file"] {
