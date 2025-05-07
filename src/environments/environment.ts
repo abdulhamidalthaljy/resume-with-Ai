@@ -1,6 +1,6 @@
 
 export const environment = {
     production: false,
-    geminiApiKey: 'AIzaSyCFIGCwSkylOr0v9J5UlJmZfh6a5g8RGOk'
+    geminiApiKey: 'AIzaSyAdhGIW5wI0n_x5kpjggl6AJb0wIUpu1z8'
   };
   
